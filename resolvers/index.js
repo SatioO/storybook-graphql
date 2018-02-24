@@ -12,7 +12,9 @@ const resolvers = {
 		posts: async (author, _) => await Post.findById(author)
 	},
 	Post: {
-		authors: async (post, _) => await Author.find(post)
+		authors: async (post, _, { loaders }) => {
+			return loaders.author.loadMany([post.id]);
+		}
 	}
 };
 

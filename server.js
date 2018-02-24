@@ -1,14 +1,24 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { graphqlExpress, graphiqlExpress } = require("graphql-server-express");
+const DataLoader = require("dataloader");
+const graphQLHTTP = require("express-graphql");
 const schema = require("./schema");
-
+const { Author } = require("./controllers");
 const app = express();
 const PORT = 3009;
 
-app.use("/graphql", bodyParser.json(), graphqlExpress({ schema: schema }));
+const authorLoader = new DataLoader(async urls => await Author.find(urls));
 
-// GraphiQL, a visual editor for queries
-app.use("/", graphiqlExpress({ endpointURL: "/graphql" }));
+const loaders = {
+	author: authorLoader
+};
+
+app.use(
+	graphQLHTTP({
+		schema,
+		graphiql: true,
+		context: { loaders }
+	})
+);
 
 app.listen(PORT, _ => console.log(`App started listening on PORT ${PORT}`));

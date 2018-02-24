@@ -10,7 +10,8 @@ class Author {
 		};
 	}
 
-	static find() {
+	static find(post) {
+		console.log(post);
 		return [
 			{
 				id: 1,
