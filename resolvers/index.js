@@ -2,13 +2,17 @@ const { Author, Post } = require("../controllers");
 
 const resolvers = {
 	Query: {
-		author: async () => await Author.findOne()
+		author: async () => await Author.findOne(),
+		posts: async () => await Post.find(),
+		search: async (_, { text }) => {
+			return [];
+		}
 	},
 	Author: {
-		posts: async (author, _) => await Author.find(author)
+		posts: async (author, _) => await Post.findById(author)
 	},
 	Post: {
-		authors: async (post, _) => await Post.find(post)
+		authors: async (post, _) => await Author.find(post)
 	}
 };
 

@@ -1,22 +1,47 @@
 class Author {
 	constructor() {}
 
-	static find({ id: postid }) {
+	static findOne() {
+		return {
+			id: 1,
+			name: "Glynnis Campbell",
+			firstname: "Vaibhav",
+			lastname: "Satam"
+		};
+	}
+
+	static find() {
 		return [
 			{
 				id: 1,
-				title: "Hello world",
-				text: "Hello world program"
+				name: "Glynnis Campbell",
+				firstname: "Glynnis",
+				lastname: "Campbell"
+			},
+			{
+				id: 2,
+				name: "John Scalzi",
+				firstname: "John",
+				lastname: "Scalzi"
 			}
 		];
 	}
 
-	static findOne() {
-		return {
-			id: 1,
-			firstname: "Vaibhav",
-			lastname: "Satam"
-		};
+	static findById({ id: postid }) {
+		return [
+			{
+				id: 1,
+				name: "Glynnis Campbell",
+				firstname: "Glynnis",
+				lastname: "Campbell"
+			},
+			{
+				id: 2,
+				name: "John Scalzi",
+				firstname: "John",
+				lastname: "Scalzi"
+			}
+		];
 	}
 }
 
