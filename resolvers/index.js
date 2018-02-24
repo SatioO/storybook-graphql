@@ -7,15 +7,27 @@ const resolvers = {
 		})
 	},
 	Author: {
-		posts: () => {
-			return [
-				{
-					id: 1,
-					title: "Hello world",
-					text: "Hello world program"
-				}
-			];
-		}
+		posts: ({ id }, _) => [
+			{
+				id: 1,
+				title: "Hello world",
+				text: "Hello world program"
+			}
+		]
+	},
+	Post: {
+		authors: () => [
+			{
+				id: 1,
+				firstname: "Vaibhav",
+				lastname: "Satam"
+			},
+			{
+				id: 1,
+				firstname: "Rohit",
+				lastname: "Natekar"
+			}
+		]
 	}
 };
 

@@ -13,6 +13,7 @@ const typeDefs = `
     id: Int
     title: String
     text: String
+    authors: [Author]
   }
 
   type Query { 
